@@ -18,10 +18,17 @@ import { useBlockProps, RichText } from '@wordpress/block-editor';
 export default function save( { attributes } ) {
 	const blockProps = useBlockProps.save();
 	return (
-		<RichText.Content 
-			{ ...blockProps } 
-			tagName="p" 
-			value={ attributes.content } 
-		/>
+    <div>
+      <RichText.Content 
+        { ...blockProps } 
+        tagName="h3" 
+        value={ attributes.title } 
+      />
+      <RichText.Content 
+        { ...blockProps } 
+        tagName="p" 
+        value={ attributes.content } 
+      />
+    </div>
 	);
 }

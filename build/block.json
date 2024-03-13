@@ -17,6 +17,11 @@
   "style": "file:./style-index.css",
   "viewScript": "file:./view.js",
   "attributes": {
+    "title": {
+      "type": "string",
+      "source": "html",
+      "selector": "h3"
+    },
     "content": {
       "type": "string",
       "source": "html",

@@ -32,18 +32,32 @@ import './editor.scss';
 export default function Edit( { attributes, setAttributes } ) {
   const blockProps = useBlockProps();
 
+  const onChangeTitle = ( newTitle ) => {
+		setAttributes( { title: newTitle } )
+	}
+  
   const onChangeContent = ( newContent ) => {
 		setAttributes( { content: newContent } )
 	}
 
 	return (
-		<RichText 
-      { ...blockProps }
-      tagName="p"
-      onChange={ onChangeContent }
-      allowedFormats={ [ 'core/bold', 'core/italic' ] }
-      value={ attributes.content }
-      placeholder={ __( 'Write your text...' ) }
-	  />
+    <div className="press-note__item">
+      <RichText 
+        { ...blockProps }
+        tagName="h3"
+        onChange={ onChangeTitle }
+        allowedFormats={ [ 'core/bold', 'core/italic' ] }
+        value={ attributes.title }
+        placeholder={ __( 'Write the press note title...' ) }
+      />
+      <RichText 
+        { ...blockProps }
+        tagName="p"
+        onChange={ onChangeContent }
+        allowedFormats={ [ 'core/bold', 'core/italic' ] }
+        value={ attributes.content }
+        placeholder={ __( 'Write your press note content...' ) }
+      />
+    </div>
 	);
 }

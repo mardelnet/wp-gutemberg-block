@@ -6,8 +6,19 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
-.wp-block-press-notes-press-notes {
-  border: 1px dotted #f00;
+.press-note__item {
+  box-shadow: 0px 2px 5px #ddd;
+  background: white;
+  color: #000;
+  border-radius: 5px;
+}
+.press-note__item h3 {
+  box-shadow: none;
+  margin: 0;
+}
+.press-note__item p {
+  box-shadow: none;
+  margin: 0;
 }
 
 /*# sourceMappingURL=index.css.map*/
