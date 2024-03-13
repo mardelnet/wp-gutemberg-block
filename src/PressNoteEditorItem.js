@@ -15,7 +15,7 @@ const PressNoteEditorItem = ({ pressNote, index, attributes, setAttributes, pres
                 handleUpload={true}
                 labels={{
                     'title': '',
-                    'instructions': 'aa',
+                    'instructions': 'aa'
                 }}
             />
 

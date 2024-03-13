@@ -54,6 +54,7 @@
   background-position: center;
   background-repeat: no-repeat;
   height: 200px;
+  background-color: #666;
 }
 .press-note__item .remove-button {
   position: absolute;
