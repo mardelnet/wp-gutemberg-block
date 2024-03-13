@@ -18,71 +18,95 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./editor.scss */ "./src/editor.scss");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./editor.scss */ "./src/editor.scss");
 
 
 
 
 
-/**
- * The edit function describes the structure of your block in the context of the
- * editor. This represents what the editor will render when the block is used.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
- *
- * @return {Element} Element to render.
- */
 function Edit({
   attributes,
   setAttributes
 }) {
+  const [pressNotes, setPressNotes] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)(attributes.pressNotes || []);
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)();
-  const onChangeTitle = newTitle => {
-    setAttributes({
+  const onChangeTitle = (newTitle, index) => {
+    const updatedPressNotes = [...pressNotes];
+    updatedPressNotes[index] = {
+      ...updatedPressNotes[index],
       title: newTitle
-    });
-  };
-  const onChangeContent = newContent => {
+    };
+    setPressNotes(updatedPressNotes);
     setAttributes({
-      content: newContent
+      pressNotes: updatedPressNotes
     });
   };
-  const setImageAttributes = media => {
+  const onChangeContent = (newContent, index) => {
+    const updatedPressNotes = [...pressNotes];
+    updatedPressNotes[index] = {
+      ...updatedPressNotes[index],
+      content: newContent
+    };
+    setPressNotes(updatedPressNotes);
+    setAttributes({
+      pressNotes: updatedPressNotes
+    });
+  };
+  const setImageAttributes = (media, index) => {
+    const updatedPressNotes = [...pressNotes];
     if (!media || !media.url) {
-      setAttributes({
+      updatedPressNotes[index] = {
+        ...updatedPressNotes[index],
         imageUrl: null,
         imageId: null,
         imageAlt: null
-      });
-      return;
+      };
+    } else {
+      updatedPressNotes[index] = {
+        ...updatedPressNotes[index],
+        imageUrl: media.url,
+        imageId: media.id,
+        imageAlt: media.alt
+      };
     }
+    setPressNotes(updatedPressNotes);
     setAttributes({
-      imageUrl: media.url,
-      imageId: media.id,
-      imageAlt: media?.alt
+      pressNotes: updatedPressNotes
     });
   };
-  const backgroundImageStyle = {
-    backgroundImage: `url(${attributes.imageUrl})`
+  const addPressNote = () => {
+    setPressNotes([...pressNotes, {
+      title: '',
+      content: '',
+      imageUrl: '',
+      imageId: '',
+      imageAlt: ''
+    }]);
+  };
+  const removePressNote = index => {
+    const updatedPressNotes = [...pressNotes];
+    updatedPressNotes.splice(index, 1);
+    setAttributes({
+      pressNotes: updatedPressNotes
+    });
   };
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)(),
+    ...blockProps
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.BlockControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+    onClick: addPressNote
+  }, "Add Press Note")), pressNotes.map((pressNote, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    key: index,
     className: "press-note__item"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.BlockControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaReplaceFlow, {
-    mediaId: attributes.imageId,
-    mediaUrl: attributes.imageUrl,
-    allowedTypes: ['image'],
-    accept: "image/*",
-    onSelect: setImageAttributes,
-    name: !attributes.imageUrl ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Add Image') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Replace Image')
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaPlaceholder, {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaPlaceholder, {
     style: {
-      backgroundImage: `url(${attributes.imageUrl})`
+      backgroundImage: `url(${pressNote.imageUrl})`
     },
     className: "main-image",
     accept: "image/*",
     allowedTypes: ['image'],
-    onSelect: setImageAttributes,
+    onSelect: media => setImageAttributes(media, index),
     multiple: false,
     handleUpload: true,
     labels: {
@@ -90,20 +114,18 @@ function Edit({
       'instructions': ''
     }
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
-    ...blockProps,
     tagName: "h3",
-    onChange: onChangeTitle,
+    onChange: newTitle => onChangeTitle(newTitle, index),
     allowedFormats: ['core/bold', 'core/italic'],
-    value: attributes.title,
+    value: pressNote.title,
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Write the press note title...')
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
-    ...blockProps,
     tagName: "p",
-    onChange: onChangeContent,
+    onChange: newContent => onChangeContent(newContent, index),
     allowedFormats: ['core/bold', 'core/italic'],
-    value: attributes.content,
+    value: pressNote.content,
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Write your press note content...')
-  }));
+  }))));
 }
 
 /***/ }),
@@ -267,6 +289,16 @@ module.exports = window["wp"]["blocks"];
 
 /***/ }),
 
+/***/ "@wordpress/element":
+/*!*********************************!*\
+  !*** external ["wp","element"] ***!
+  \*********************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["element"];
+
+/***/ }),
+
 /***/ "@wordpress/i18n":
 /*!******************************!*\
   !*** external ["wp","i18n"] ***!
@@ -283,7 +315,7 @@ module.exports = window["wp"]["i18n"];
   \************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"press-notes/press-notes","version":"0.1.0","title":"Press Notes Block","category":"widgets","icon":"smiley","description":"The Press Notes Gutemberg Block","example":{},"supports":{"html":false},"textdomain":"press-notes","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"imageUrl":{"type":"string"},"imageId":{"type":"number"},"imageAlt":{"type":"string","source":"attribute","selector":"img","attribute":"alt","default":""},"title":{"type":"string","source":"html","selector":"h3"},"content":{"type":"string","source":"html","selector":"p"}}}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"press-notes/press-notes","version":"0.1.0","title":"Press Notes Block","category":"widgets","icon":"smiley","description":"The Press Notes Gutenberg Block","example":{},"supports":{"html":false},"textdomain":"press-notes","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"pressNotes":{"type":"array","default":[],"items":{"type":"object","properties":{"title":{"type":"string"},"content":{"type":"string"},"imageUrl":{"type":"string"},"imageId":{"type":"number"},"imageAlt":{"type":"string"}}}}}}');
 
 /***/ })
 

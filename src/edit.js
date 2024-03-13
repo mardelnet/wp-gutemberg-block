@@ -1,94 +1,98 @@
 import { __ } from '@wordpress/i18n';
-
 import { useBlockProps, RichText, MediaPlaceholder, MediaReplaceFlow, BlockControls } from '@wordpress/block-editor';
-
+import { useState } from '@wordpress/element';
 import './editor.scss';
 
-/**
- * The edit function describes the structure of your block in the context of the
- * editor. This represents what the editor will render when the block is used.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
- *
- * @return {Element} Element to render.
- */
-export default function Edit( { attributes, setAttributes } ) {
-  const blockProps = useBlockProps();
+export default function Edit({ attributes, setAttributes }) {
+    const [pressNotes, setPressNotes] = useState(attributes.pressNotes || []);
 
-  const onChangeTitle = ( newTitle ) => {
-		setAttributes( { title: newTitle } )
-	}
-  
-  const onChangeContent = ( newContent ) => {
-		setAttributes( { content: newContent } )
-	}
+    const blockProps = useBlockProps();
 
-  const setImageAttributes = (media) => {
-    if (!media || !media.url) {
-        setAttributes({
-            imageUrl: null,
-            imageId: null,
-            imageAlt: null,
-        });
-        return;
-    }
-    setAttributes({
-        imageUrl: media.url,
-        imageId: media.id,
-        imageAlt: media?.alt,
-    });
-  };
+    const onChangeTitle = (newTitle, index) => {
+        const updatedPressNotes = [...pressNotes];
+        updatedPressNotes[index] = { ...updatedPressNotes[index], title: newTitle };
+        setPressNotes(updatedPressNotes);
+        setAttributes({ pressNotes: updatedPressNotes });
+    };
 
-  const backgroundImageStyle = {
-    backgroundImage: `url(${attributes.imageUrl})`,
-    
-  };
+    const onChangeContent = (newContent, index) => {
+        const updatedPressNotes = [...pressNotes];
+        updatedPressNotes[index] = { ...updatedPressNotes[index], content: newContent };
+        setPressNotes(updatedPressNotes);
+        setAttributes({ pressNotes: updatedPressNotes });
+    };
 
-	return (
-    <div {...useBlockProps()} className="press-note__item">
-      
-      <BlockControls>
-        <MediaReplaceFlow
-          mediaId={ attributes.imageId }
-          mediaUrl={ attributes.imageUrl }
-          allowedTypes={['image']}
-          accept="image/*"
-          onSelect={setImageAttributes}
-          name={ !attributes.imageUrl ? __('Add Image') : __('Replace Image') }
-        />
-      </BlockControls>
+    const setImageAttributes = (media, index) => {
+        const updatedPressNotes = [...pressNotes];
+        if (!media || !media.url) {
+            updatedPressNotes[index] = { ...updatedPressNotes[index], imageUrl: null, imageId: null, imageAlt: null };
+        } else {
+            updatedPressNotes[index] = { ...updatedPressNotes[index], imageUrl: media.url, imageId: media.id, imageAlt: media.alt };
+        }
+        setPressNotes(updatedPressNotes);
+        setAttributes({ pressNotes: updatedPressNotes });
+    };
 
-      <MediaPlaceholder
-        style={{ backgroundImage: `url(${attributes.imageUrl})` }}
-        className='main-image'
-        accept="image/*"
-        allowedTypes={['image']}
-        onSelect={setImageAttributes}
-        multiple={false}
-        handleUpload={true}
-        labels={{
-          'title': '',
-          'instructions': '',
-        }}
-      />
-    
-      <RichText 
-          { ...blockProps }
-          tagName="h3"
-          onChange={ onChangeTitle }
-          allowedFormats={ [ 'core/bold', 'core/italic' ] }
-          value={ attributes.title }
-          placeholder={ __( 'Write the press note title...' ) }
-        />
+    const addPressNote = () => {
+        setPressNotes([...pressNotes, { title: '', content: '', imageUrl: '', imageId: '', imageAlt: '' }]);
+    };
 
-        <RichText 
-          { ...blockProps }
-          tagName="p"
-          onChange={ onChangeContent }
-          allowedFormats={ [ 'core/bold', 'core/italic' ] }
-          value={ attributes.content }
-          placeholder={ __( 'Write your press note content...' ) }
-        />
-    </div>
-	);
+    const removePressNote = index => {
+        const updatedPressNotes = [...pressNotes];
+        updatedPressNotes.splice(index, 1);
+        setAttributes({ pressNotes: updatedPressNotes });
+    };
+
+    return (
+        <div {...blockProps}>
+            <BlockControls>
+                <button onClick={addPressNote}>Add Press Note</button>
+            </BlockControls>
+            {pressNotes.map((pressNote, index) => (
+                <div key={index} className="press-note__item">
+                    {/* <BlockControls>
+                        <MediaReplaceFlow
+                            mediaId={pressNote.imageId}
+                            mediaUrl={pressNote.imageUrl}
+                            allowedTypes={['image']}
+                            accept="image/*"
+                            onSelect={media => setImageAttributes(media, index)}
+                            name={!pressNote.imageUrl ? __('Add Image') : __('Replace Image')}
+                        />
+                        <button onClick={() => removePressNote(index)}>Remove Press Note</button>
+                    </BlockControls> */}
+
+                    <MediaPlaceholder
+                        style={{ backgroundImage: `url(${pressNote.imageUrl})` }}
+                        className='main-image'
+                        accept="image/*"
+                        allowedTypes={['image']}
+                        onSelect={media => setImageAttributes(media, index)}
+                        multiple={false}
+                        handleUpload={true}
+                        labels={{
+                            'title': '',
+                            'instructions': '',
+                        }}
+                    />
+
+                    <RichText
+                        tagName="h3"
+                        onChange={newTitle => onChangeTitle(newTitle, index)}
+                        allowedFormats={['core/bold', 'core/italic']}
+                        value={pressNote.title}
+                        placeholder={__('Write the press note title...')}
+                    />
+
+                    <RichText
+                        tagName="p"
+                        onChange={newContent => onChangeContent(newContent, index)}
+                        allowedFormats={['core/bold', 'core/italic']}
+                        value={pressNote.content}
+                        placeholder={__('Write your press note content...')}
+                    />
+                </div>
+            ))}
+        </div>
+    );
 }
