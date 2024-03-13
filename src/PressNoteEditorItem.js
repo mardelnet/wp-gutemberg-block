@@ -15,7 +15,7 @@ const PressNoteEditorItem = ({ pressNote, index, attributes, setAttributes, pres
                 handleUpload={true}
                 labels={{
                     'title': '',
-                    'instructions': '',
+                    'instructions': 'aa',
                 }}
             />
 
@@ -35,7 +35,11 @@ const PressNoteEditorItem = ({ pressNote, index, attributes, setAttributes, pres
                 placeholder={__('Write your press note content...')}
             />
 
-            <button onClick={() => removePressNote(pressNotes, setPressNotes, setAttributes, index)}>Remove Press Note</button>
+            <button
+             className="remove-button"
+             onClick={() => removePressNote(pressNotes, setPressNotes, setAttributes, index)}>
+              x
+            </button>
         </div>
     );
 };

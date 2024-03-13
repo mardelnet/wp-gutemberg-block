@@ -45,7 +45,7 @@ const PressNoteEditorItem = ({
     handleUpload: true,
     labels: {
       'title': '',
-      'instructions': ''
+      'instructions': 'aa'
     }
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
     tagName: "h3",
@@ -60,8 +60,9 @@ const PressNoteEditorItem = ({
     value: pressNote.content,
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Write your press note content...')
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+    className: "remove-button",
     onClick: () => (0,_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_3__.removePressNote)(pressNotes, setPressNotes, setAttributes, index)
-  }, "Remove Press Note"));
+  }, "x"));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PressNoteEditorItem);
 
@@ -109,11 +110,33 @@ function Edit({
   const [pressNotes, setPressNotes] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)(attributes.pressNotes || []);
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)();
   const settings = {
-    dots: true,
-    infinite: true,
+    dots: false,
+    infinite: false,
     speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    responsive: [{
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        infinite: true,
+        dots: true
+      }
+    }, {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2,
+        initialSlide: 2
+      }
+    }, {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }]
   };
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
