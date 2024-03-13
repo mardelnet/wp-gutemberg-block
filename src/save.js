@@ -19,6 +19,7 @@ export default function save( { attributes } ) {
 	const blockProps = useBlockProps.save();
 	return (
     <div>
+      <img src={ attributes.imageUrl } />
       <RichText.Content 
         { ...blockProps } 
         tagName="h3" 

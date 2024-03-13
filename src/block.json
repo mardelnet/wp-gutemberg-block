@@ -17,6 +17,19 @@
 	"style": "file:./style-index.css",
 	"viewScript": "file:./view.js",
   "attributes": {
+    "imageUrl": {
+      "type": "string"
+    },
+    "imageId": {
+      "type": "number"
+    },
+    "imageAlt": {
+      "type": "string",
+      "source": "attribute",
+      "selector": "img",
+      "attribute": "alt",
+      "default": ""
+    },
     "title": {
       "type": "string",
       "source": "html",

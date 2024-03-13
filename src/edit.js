@@ -1,24 +1,7 @@
-/**
- * Retrieves the translation of text.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
- */
 import { __ } from '@wordpress/i18n';
 
-/**
- * React hook that is used to mark the block wrapper element.
- * It provides all the necessary props like the class name.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
- */
-import { useBlockProps, RichText } from '@wordpress/block-editor';
+import { useBlockProps, RichText, MediaPlaceholder, MediaReplaceFlow, BlockControls } from '@wordpress/block-editor';
 
-/**
- * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
- * Those files can contain any CSS code that gets applied to the editor.
- *
- * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
- */
 import './editor.scss';
 
 /**
@@ -40,24 +23,72 @@ export default function Edit( { attributes, setAttributes } ) {
 		setAttributes( { content: newContent } )
 	}
 
+  const setImageAttributes = (media) => {
+    if (!media || !media.url) {
+        setAttributes({
+            imageUrl: null,
+            imageId: null,
+            imageAlt: null,
+        });
+        return;
+    }
+    setAttributes({
+        imageUrl: media.url,
+        imageId: media.id,
+        imageAlt: media?.alt,
+    });
+  };
+
+  const backgroundImageStyle = {
+    backgroundImage: `url(${attributes.imageUrl})`,
+    
+  };
+
 	return (
-    <div className="press-note__item">
-      <RichText 
-        { ...blockProps }
-        tagName="h3"
-        onChange={ onChangeTitle }
-        allowedFormats={ [ 'core/bold', 'core/italic' ] }
-        value={ attributes.title }
-        placeholder={ __( 'Write the press note title...' ) }
+    <div {...useBlockProps()} className="press-note__item">
+      
+      <BlockControls>
+        <MediaReplaceFlow
+          mediaId={ attributes.imageId }
+          mediaUrl={ attributes.imageUrl }
+          allowedTypes={['image']}
+          accept="image/*"
+          onSelect={setImageAttributes}
+          name={ !attributes.imageUrl ? __('Add Image') : __('Replace Image') }
+        />
+      </BlockControls>
+
+      <MediaPlaceholder
+        style={{ backgroundImage: `url(${attributes.imageUrl})` }}
+        className='main-image'
+        accept="image/*"
+        allowedTypes={['image']}
+        onSelect={setImageAttributes}
+        multiple={false}
+        handleUpload={true}
+        labels={{
+          'title': '',
+          'instructions': '',
+        }}
       />
+    
       <RichText 
-        { ...blockProps }
-        tagName="p"
-        onChange={ onChangeContent }
-        allowedFormats={ [ 'core/bold', 'core/italic' ] }
-        value={ attributes.content }
-        placeholder={ __( 'Write your press note content...' ) }
-      />
+          { ...blockProps }
+          tagName="h3"
+          onChange={ onChangeTitle }
+          allowedFormats={ [ 'core/bold', 'core/italic' ] }
+          value={ attributes.title }
+          placeholder={ __( 'Write the press note title...' ) }
+        />
+
+        <RichText 
+          { ...blockProps }
+          tagName="p"
+          onChange={ onChangeContent }
+          allowedFormats={ [ 'core/bold', 'core/italic' ] }
+          value={ attributes.content }
+          placeholder={ __( 'Write your press note content...' ) }
+        />
     </div>
 	);
 }
