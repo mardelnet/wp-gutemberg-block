@@ -4,7 +4,6 @@ import { Icon } from '@wordpress/components';
 const Save = ({ attributes }) => {
     const blockProps = useBlockProps.save();
 
-    // Assuming attributes.pressNotes is an array of slide objects with imageUrl, title, and content properties
     return (
         <div { ...blockProps }>
           <div className="header">

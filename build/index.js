@@ -391,8 +391,6 @@ const Save = ({
   attributes
 }) => {
   const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save();
-
-  // Assuming attributes.pressNotes is an array of slide objects with imageUrl, title, and content properties
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
