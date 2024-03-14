@@ -397,7 +397,7 @@ const Save = ({
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "slick-slider"
   }, attributes.pressNotes.map((slide, index) => {
-    var _slide$selectedOption, _slide$imageUrl;
+    var _slide$selectedOption, _slide$title;
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       key: index,
       className: "single-press-note"
@@ -406,9 +406,9 @@ const Save = ({
       icon: (_slide$selectedOption = slide?.selectedOption) !== null && _slide$selectedOption !== void 0 ? _slide$selectedOption : 'admin-site'
     }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "main-image"
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-      src: (_slide$imageUrl = slide?.imageUrl) !== null && _slide$imageUrl !== void 0 ? _slide$imageUrl : '',
-      alt: slide.title
+    }, slide?.imageUrl && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+      src: slide.imageUrl,
+      alt: (_slide$title = slide.title) !== null && _slide$title !== void 0 ? _slide$title : 'press note image'
     })), slide?.date && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "single-press-note__date"
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {

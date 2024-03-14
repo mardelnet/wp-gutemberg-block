@@ -22,7 +22,7 @@ const Save = ({ attributes }) => {
                         <div key={index} className="single-press-note">
                             <Icon  className="single-press-note__icon" icon={slide?.selectedOption ?? 'admin-site'} />
                             <div className='main-image'>
-                              <img src={slide?.imageUrl ?? ''} alt={slide.title} />
+                              {slide?.imageUrl && ( <img src={slide.imageUrl} alt={slide.title ?? 'press note image'} /> ) }
                             </div>
                             {slide?.date && (
                               <div className="single-press-note__date">

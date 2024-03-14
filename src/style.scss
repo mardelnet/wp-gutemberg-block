@@ -1,10 +1,4 @@
-/**
- * The following styles get applied inside the editor only.
- *
- * Replace them with your own styles or remove the file completely.
- */
-
- .wp-block-press-notes-press-notes {
+.wp-block-press-notes-press-notes {
   background-color: transparent;
   color: #fff;
   padding: 0;
@@ -20,46 +14,13 @@
     }
   }
 
-  .components {
-
-    &-base-control__field {
-      position: absolute;
-      top: 10px;
-      left: 50px;
-    }
-
-    &-datetime__date {
-      border: 1px solid #999;
-      border-radius: 5px;
-      margin: 10px;
-      padding: 10px;
-      box-sizing: border-box;
-    }
-
-    &-placeholder {
-      button.is-primary {
-        display: none;
-      }
-
-      button.is-tertiary {
-        padding: 0 10px;
-        background: rgba(0, 0, 0, 0.5);
-        margin: 0;
-        color: white;
-        position: absolute;
-        bottom: 10px;
-        left: 10px;
-      }
-    }
-  }
-
   .single-press-note {
     box-shadow: 0px 2px 5px #ddd;
     background: white;
     color: #000;
     border-radius: 5px;
     overflow: hidden;
-    margin: 0 7.5px;
+    margin: 0 7.5px 7.5px;
     position: relative;
     height: 100%;
 
@@ -80,10 +41,9 @@
         font-size: 30px;
         line-height: 30px;
       }
-    
-      span {
-        display: block;
-        line-height: 12px;
+
+      &--month {
+        line-height: 11px;
       }
     }
     
@@ -116,24 +76,11 @@
       width: 30px;
       height: 30px;
       border-radius: 50%;
-      color: #666;
-      cursor: pointer;
+      color: #999;
     }
 
-    &__remove-button {
-      position: absolute;
-      cursor: pointer;
-      top: 10px;
-      right: 10px;
-      border: 0;
-      color: white;
-      font-size: 12.5px;
-      background: #999;
-      text-align: center;
-      padding: 5px 10px;
-    }
-
-    .main-image {
+    .main-image, 
+    .main-image img {
       box-shadow: none;
       background-size: cover;
       background-position: center;
