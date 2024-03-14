@@ -19,6 +19,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _pressNoteFunctions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pressNoteFunctions */ "./src/pressNoteFunctions.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__);
+
+
 
 
 
@@ -26,11 +32,12 @@ __webpack_require__.r(__webpack_exports__);
 const PressNoteEditorItem = ({
   pressNote,
   index,
-  attributes,
   setAttributes,
   pressNotes,
   setPressNotes
 }) => {
+  const [isDatePickerVisible, setIsDatePickerVisible] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useState)(false);
+  const date = (0,_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_3__.parseDateString)(pressNote.date);
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "press-note__item"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaPlaceholder, {
@@ -45,20 +52,31 @@ const PressNoteEditorItem = ({
     handleUpload: true,
     labels: {
       'title': '',
-      'instructions': 'aa'
+      'instructions': 'Update Image'
     }
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
     tagName: "h3",
     onChange: newTitle => (0,_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_3__.onChangeTitle)(pressNotes, setPressNotes, setAttributes, newTitle, index),
-    allowedFormats: ['core/bold', 'core/italic'],
     value: pressNote.title,
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Write the press note title...')
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Título...')
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
     tagName: "p",
     onChange: newContent => (0,_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_3__.onChangeContent)(pressNotes, setPressNotes, setAttributes, newContent, index),
-    allowedFormats: ['core/bold', 'core/italic'],
     value: pressNote.content,
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Write your press note content...')
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Contenido...')
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "date",
+    onClick: () => {
+      setIsDatePickerVisible(!isDatePickerVisible);
+    }
+  }, !date && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "no-date"
+  }, "Select ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, "date")), date?.day && date?.month && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "day"
+  }, date.day), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "month"
+  }, date.month))), isDatePickerVisible && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.DatePicker, {
+    onChange: newDate => (0,_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_3__.handleDateChange)(pressNotes, setPressNotes, setAttributes, newDate, index, setIsDatePickerVisible)
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     className: "remove-button",
     onClick: () => (0,_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_3__.removePressNote)(pressNotes, setPressNotes, setAttributes, index)
@@ -113,7 +131,7 @@ function Edit({
     dots: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 2,
     slidesToScroll: 1,
     responsive: [{
       breakpoint: 1024,
@@ -216,8 +234,10 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   addPressNote: () => (/* binding */ addPressNote),
+/* harmony export */   handleDateChange: () => (/* binding */ handleDateChange),
 /* harmony export */   onChangeContent: () => (/* binding */ onChangeContent),
 /* harmony export */   onChangeTitle: () => (/* binding */ onChangeTitle),
+/* harmony export */   parseDateString: () => (/* binding */ parseDateString),
 /* harmony export */   removePressNote: () => (/* binding */ removePressNote),
 /* harmony export */   setImageAttributes: () => (/* binding */ setImageAttributes)
 /* harmony export */ });
@@ -239,6 +259,18 @@ const onChangeContent = (pressNotes, setPressNotes, setAttributes, newContent, i
     content: newContent
   };
   setPressNotes(updatedPressNotes);
+  setAttributes({
+    pressNotes: updatedPressNotes
+  });
+};
+const handleDateChange = (pressNotes, setPressNotes, setAttributes, date, index, setIsDatePickerVisible) => {
+  const updatedPressNotes = [...pressNotes];
+  updatedPressNotes[index] = {
+    ...updatedPressNotes[index],
+    date: date
+  };
+  setPressNotes(updatedPressNotes);
+  setIsDatePickerVisible(false);
   setAttributes({
     pressNotes: updatedPressNotes
   });
@@ -285,6 +317,24 @@ const removePressNote = (pressNotes, setPressNotes, setAttributes, index) => {
   setAttributes({
     pressNotes: updatedPressNotes
   });
+};
+const parseDateString = dateString => {
+  const date = new Date(dateString);
+  if (isNaN(date.getTime())) {
+    return null;
+  }
+
+  // Array of month names
+  const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+  // Extract day and month from the Date object
+  const day = date.getDate();
+  const month = monthNames[date.getMonth()]; // Get the month name using the month number
+
+  return {
+    day,
+    month
+  };
 };
 
 /***/ }),
@@ -4553,6 +4603,17 @@ module.exports = window["wp"]["blocks"];
 
 /***/ }),
 
+/***/ "@wordpress/components":
+/*!************************************!*\
+  !*** external ["wp","components"] ***!
+  \************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = window["wp"]["components"];
+
+/***/ }),
+
 /***/ "@wordpress/element":
 /*!*********************************!*\
   !*** external ["wp","element"] ***!
@@ -4668,7 +4729,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"press-notes/press-notes","version":"0.1.0","title":"Press Notes Block","category":"widgets","icon":"smiley","description":"The Press Notes Gutenberg Block","example":{},"supports":{"html":false},"textdomain":"press-notes","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"pressNotes":{"type":"array","default":[],"items":{"type":"object","properties":{"title":{"type":"string"},"content":{"type":"string"},"imageUrl":{"type":"string"},"imageId":{"type":"number"},"imageAlt":{"type":"string"}}}}}}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"press-notes/press-notes","version":"0.1.0","title":"Press Notes Block","category":"widgets","icon":"smiley","description":"The Press Notes Gutenberg Block","example":{},"supports":{"html":false},"textdomain":"press-notes","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"pressNotes":{"type":"array","default":[],"items":{"type":"object","properties":{"title":{"type":"string"},"content":{"type":"string"},"date":{"type":"string"},"imageUrl":{"type":"string"},"imageId":{"type":"number"},"imageAlt":{"type":"string"}}}}}}');
 
 /***/ })
 
