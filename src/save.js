@@ -1,5 +1,6 @@
 import { useBlockProps } from '@wordpress/block-editor';
 import { Icon } from '@wordpress/components';
+import { parseDateString } from './pressNoteFunctions';
 
 const Save = ({ attributes }) => {
     const blockProps = useBlockProps.save();
@@ -23,11 +24,15 @@ const Save = ({ attributes }) => {
                             <div className='main-image'>
                               <img src={slide?.imageUrl ?? ''} alt={slide.title} />
                             </div>
-                            {slide?.day && slide?.month && (
+                            {slide?.date && (
                               <div className="single-press-note__date">
                                 <div>
-                                  <div className="single-press-note__date--day">{slide.day}</div>
-                                  <div className="single-press-note__date--month">{slide.month}</div>
+                                  <div className="single-press-note__date--day">
+                                    {parseDateString(slide.date).day}
+                                  </div>
+                                  <div className="single-press-note__date--month">
+                                    {parseDateString(slide.date).month}
+                                  </div>
                                 </div>
                               </div>
                             )}

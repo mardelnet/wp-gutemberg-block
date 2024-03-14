@@ -384,6 +384,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _pressNoteFunctions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pressNoteFunctions */ "./src/pressNoteFunctions.js");
+
 
 
 
@@ -418,13 +420,13 @@ const Save = ({
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
       src: (_slide$imageUrl = slide?.imageUrl) !== null && _slide$imageUrl !== void 0 ? _slide$imageUrl : '',
       alt: slide.title
-    })), slide?.day && slide?.month && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    })), slide?.date && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "single-press-note__date"
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "single-press-note__date--day"
-    }, slide.day), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    }, (0,_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_3__.parseDateString)(slide.date).day), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "single-press-note__date--month"
-    }, slide.month))), slide?.title && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", {
+    }, (0,_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_3__.parseDateString)(slide.date).month))), slide?.title && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", {
       className: "single-press-note__title"
     }, slide.title), slide?.content && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
       className: "single-press-note__content"
