@@ -28,3 +28,12 @@ function press_notes_press_notes_block_init() {
 	register_block_type( __DIR__ . '/build' );
 }
 add_action( 'init', 'press_notes_press_notes_block_init' );
+
+/**
+ * Allows the use of dashicons.
+ *
+ * @see https://github.com/WordPress/gutenberg/issues/53528
+ */
+add_action('enqueue_block_assets', function (): void {
+  wp_enqueue_style('dashicons');
+});

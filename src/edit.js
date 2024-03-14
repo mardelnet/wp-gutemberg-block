@@ -1,45 +1,21 @@
 import { __ } from '@wordpress/i18n';
-import { useBlockProps, MediaPlaceholder, RichText, BlockControls } from '@wordpress/block-editor';
+import { useBlockProps, BlockControls } from '@wordpress/block-editor';
 import { useState } from '@wordpress/element';
-import { onChangeTitle, onChangeContent, setImageAttributes, addPressNote, removePressNote } from './pressNoteFunctions';
+import { Icon } from '@wordpress/components';
+import { addPressNote } from './pressNoteFunctions';
+
 import PressNoteEditorItem from './PressNoteEditorItem';
-import './editor.scss';
 import Slider from 'react-slick';
+import sliderSettings from './utils/sliderSettings'
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import './editor.scss';
 
 export default function Edit({ attributes, setAttributes }) {
     const [pressNotes, setPressNotes] = useState(attributes.pressNotes || []);
     const blockProps = useBlockProps();
-
-    const settings = {
-      dots: false,
-      infinite: false,
-      speed: 500,
-      slidesToShow: 2,
-      slidesToScroll: 1,
-      responsive: [
-        {
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: 3
-          }
-        },
-        {
-          breakpoint: 600,
-          settings: {
-            slidesToShow: 2
-          }
-        },
-        {
-          breakpoint: 480,
-          settings: {
-            slidesToShow: 1
-          }
-        }
-      ]
-    };
+    const slider = React.useRef(null);
 
     return (
         <div {...blockProps}>
@@ -47,7 +23,17 @@ export default function Edit({ attributes, setAttributes }) {
                 <button onClick={() => addPressNote(pressNotes, setPressNotes, setAttributes)}>Add Press Note</button>
             </BlockControls>
 
-            <Slider {...settings}>
+            <div className="header">
+              <div>
+                <h2>Notas de Prensa</h2>
+              </div>
+              <div>
+                <Icon icon="arrow-left-alt2" onClick={() => slider?.current?.slickPrev()} />
+                <Icon icon="arrow-right-alt2" onClick={() => slider?.current?.slickNext()} />
+              </div>
+            </div>
+
+            <Slider ref={slider} {...sliderSettings}>
               {pressNotes.map((pressNote, index) => (
                 <PressNoteEditorItem
                     key={index}
