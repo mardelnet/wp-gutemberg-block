@@ -1,6 +1,6 @@
 import { useBlockProps } from '@wordpress/block-editor';
 import { Icon } from '@wordpress/components';
-import { parseDateString } from './pressNoteFunctions';
+import { parseDateString } from './utils/pressNoteFunctions';
 
 const Save = ({ attributes }) => {
     const blockProps = useBlockProps.save();

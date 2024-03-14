@@ -1,10 +1,10 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/PressNoteEditorItem.js":
-/*!************************************!*\
-  !*** ./src/PressNoteEditorItem.js ***!
-  \************************************/
+/***/ "./src/components/PressNoteEditorItem.js":
+/*!***********************************************!*\
+  !*** ./src/components/PressNoteEditorItem.js ***!
+  \***********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -22,7 +22,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _pressNoteFunctions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pressNoteFunctions */ "./src/pressNoteFunctions.js");
+/* harmony import */ var _utils_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/pressNoteFunctions */ "./src/utils/pressNoteFunctions.js");
 
 
 
@@ -39,7 +39,7 @@ const PressNoteEditorItem = ({
   var _pressNote$selectedOp;
   const [isDatePickerVisible, setIsDatePickerVisible] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)(false);
   const [isTypePickerVisible, setIsTypePickerVisible] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)(false);
-  const date = (0,_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_5__.parseDateString)(pressNote.date);
+  const date = (0,_utils_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_5__.parseDateString)(pressNote.date);
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "single-press-note"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaPlaceholder, {
@@ -49,12 +49,12 @@ const PressNoteEditorItem = ({
     className: "main-image",
     accept: "image/*",
     allowedTypes: ['image'],
-    onSelect: media => (0,_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_5__.setImageAttributes)(pressNotes, setPressNotes, setAttributes, media, index),
+    onSelect: media => (0,_utils_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_5__.setImageAttributes)(pressNotes, setPressNotes, setAttributes, media, index),
     multiple: false,
     handleUpload: true,
     labels: {
       'title': '',
-      'instructions': 'Update Image'
+      'instructions': ''
     }
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Icon, {
     className: "single-press-note__icon",
@@ -81,19 +81,19 @@ const PressNoteEditorItem = ({
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Icono 5'),
       value: 'admin-users'
     }],
-    onChange: newIcon => (0,_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_5__.handleTypeChange)(pressNotes, setPressNotes, setAttributes, newIcon, index, setIsTypePickerVisible)
+    onChange: newIcon => (0,_utils_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_5__.handleTypeChange)(pressNotes, setPressNotes, setAttributes, newIcon, index, setIsTypePickerVisible)
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
     className: "single-press-note__title",
     tagName: "h3",
-    onChange: newTitle => (0,_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_5__.onChangeTitle)(pressNotes, setPressNotes, setAttributes, newTitle, index),
+    onChange: newTitle => (0,_utils_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_5__.onChangeTitle)(pressNotes, setPressNotes, setAttributes, newTitle, index),
     value: pressNote.title,
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Título...')
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Add title...')
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
     className: "single-press-note__content",
     tagName: "p",
-    onChange: newContent => (0,_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_5__.onChangeContent)(pressNotes, setPressNotes, setAttributes, newContent, index),
+    onChange: newContent => (0,_utils_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_5__.onChangeContent)(pressNotes, setPressNotes, setAttributes, newContent, index),
     value: pressNote.content,
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Contenido...')
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Add description...')
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "single-press-note__date",
     onClick: () => {
@@ -104,10 +104,10 @@ const PressNoteEditorItem = ({
   }, date.day), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "single-press-note__date--month"
   }, date.month))), isDatePickerVisible && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.DatePicker, {
-    onChange: newDate => (0,_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_5__.handleDateChange)(pressNotes, setPressNotes, setAttributes, newDate, index, setIsDatePickerVisible)
+    onChange: newDate => (0,_utils_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_5__.handleDateChange)(pressNotes, setPressNotes, setAttributes, newDate, index, setIsDatePickerVisible)
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     className: "single-press-note__remove-button",
-    onClick: () => (0,_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_5__.removePressNote)(pressNotes, setPressNotes, setAttributes, index)
+    onClick: () => (0,_utils_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_5__.removePressNote)(pressNotes, setPressNotes, setAttributes, index)
   }, "Remove item"));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PressNoteEditorItem);
@@ -133,13 +133,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _pressNoteFunctions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pressNoteFunctions */ "./src/pressNoteFunctions.js");
+/* harmony import */ var _utils_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./utils/pressNoteFunctions */ "./src/utils/pressNoteFunctions.js");
 /* harmony import */ var _utils_sliderSettings__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./utils/sliderSettings */ "./src/utils/sliderSettings.js");
-/* harmony import */ var _PressNoteEditorItem__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./PressNoteEditorItem */ "./src/PressNoteEditorItem.js");
+/* harmony import */ var _components_PressNoteEditorItem__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/PressNoteEditorItem */ "./src/components/PressNoteEditorItem.js");
 /* harmony import */ var react_slick__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-slick */ "./node_modules/react-slick/lib/index.js");
 /* harmony import */ var slick_carousel_slick_slick_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! slick-carousel/slick/slick.css */ "./node_modules/slick-carousel/slick/slick.css");
 /* harmony import */ var slick_carousel_slick_slick_theme_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! slick-carousel/slick/slick-theme.css */ "./node_modules/slick-carousel/slick/slick-theme.css");
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./editor.scss */ "./src/editor.scss");
+/* harmony import */ var _styles_editor_scss__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./styles/editor.scss */ "./src/styles/editor.scss");
 
 
 
@@ -160,12 +160,12 @@ function Edit({
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.BlockControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    onClick: () => (0,_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_4__.addPressNote)(pressNotes, setPressNotes, setAttributes)
+    onClick: () => (0,_utils_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_4__.addPressNote)(pressNotes, setPressNotes, setAttributes)
   }, "Add Press Note")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "header"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "Notas de Prensa"))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_slick__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "Notas de Prensa")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_slick__WEBPACK_IMPORTED_MODULE_7__["default"], {
     ..._utils_sliderSettings__WEBPACK_IMPORTED_MODULE_5__.sliderSettingsWithArrows
-  }, pressNotes.map((pressNote, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_PressNoteEditorItem__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }, pressNotes.map((pressNote, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_PressNoteEditorItem__WEBPACK_IMPORTED_MODULE_6__["default"], {
     key: index,
     pressNote: pressNote,
     index: index,
@@ -188,7 +188,7 @@ function Edit({
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./src/style.scss");
+/* harmony import */ var _styles_style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles/style.scss */ "./src/styles/style.scss");
 /* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/edit.js");
 /* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./save */ "./src/save.js");
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./block.json */ "./src/block.json");
@@ -233,10 +233,80 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/pressNoteFunctions.js":
-/*!***********************************!*\
-  !*** ./src/pressNoteFunctions.js ***!
-  \***********************************/
+/***/ "./src/save.js":
+/*!*********************!*\
+  !*** ./src/save.js ***!
+  \*********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _utils_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils/pressNoteFunctions */ "./src/utils/pressNoteFunctions.js");
+
+
+
+
+const Save = ({
+  attributes
+}) => {
+  const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save();
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    ...blockProps
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "header"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "Notas de Prensa")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Icon, {
+    icon: "arrow-left-alt2",
+    onClick: () => slider?.current?.slickPrev()
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Icon, {
+    icon: "arrow-right-alt2",
+    onClick: () => slider?.current?.slickNext()
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "slider"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "slick-slider"
+  }, attributes.pressNotes.map((slide, index) => {
+    var _slide$selectedOption, _slide$title;
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      key: index,
+      className: "single-press-note"
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Icon, {
+      className: "single-press-note__icon",
+      icon: (_slide$selectedOption = slide?.selectedOption) !== null && _slide$selectedOption !== void 0 ? _slide$selectedOption : 'admin-site'
+    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "main-image"
+    }, slide?.imageUrl && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+      src: slide.imageUrl,
+      alt: (_slide$title = slide.title) !== null && _slide$title !== void 0 ? _slide$title : 'press note image'
+    })), slide?.date && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "single-press-note__date"
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "single-press-note__date--day"
+    }, (0,_utils_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_3__.parseDateString)(slide.date).day), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "single-press-note__date--month"
+    }, (0,_utils_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_3__.parseDateString)(slide.date).month))), slide?.title && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", {
+      className: "single-press-note__title"
+    }, slide.title), slide?.content && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+      className: "single-press-note__content"
+    }, slide.content));
+  }))));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Save);
+
+/***/ }),
+
+/***/ "./src/utils/pressNoteFunctions.js":
+/*!*****************************************!*\
+  !*** ./src/utils/pressNoteFunctions.js ***!
+  \*****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -353,76 +423,6 @@ const parseDateString = dateString => {
     month
   };
 };
-
-/***/ }),
-
-/***/ "./src/save.js":
-/*!*********************!*\
-  !*** ./src/save.js ***!
-  \*********************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _pressNoteFunctions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pressNoteFunctions */ "./src/pressNoteFunctions.js");
-
-
-
-
-const Save = ({
-  attributes
-}) => {
-  const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save();
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    ...blockProps
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "header"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "Notas de Prensa")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Icon, {
-    icon: "arrow-left-alt2",
-    onClick: () => slider?.current?.slickPrev()
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Icon, {
-    icon: "arrow-right-alt2",
-    onClick: () => slider?.current?.slickNext()
-  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "slider"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "slick-slider"
-  }, attributes.pressNotes.map((slide, index) => {
-    var _slide$selectedOption, _slide$title;
-    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      key: index,
-      className: "single-press-note"
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Icon, {
-      className: "single-press-note__icon",
-      icon: (_slide$selectedOption = slide?.selectedOption) !== null && _slide$selectedOption !== void 0 ? _slide$selectedOption : 'admin-site'
-    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "main-image"
-    }, slide?.imageUrl && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-      src: slide.imageUrl,
-      alt: (_slide$title = slide.title) !== null && _slide$title !== void 0 ? _slide$title : 'press note image'
-    })), slide?.date && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "single-press-note__date"
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "single-press-note__date--day"
-    }, (0,_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_3__.parseDateString)(slide.date).day), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "single-press-note__date--month"
-    }, (0,_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_3__.parseDateString)(slide.date).month))), slide?.title && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", {
-      className: "single-press-note__title"
-    }, slide.title), slide?.content && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-      className: "single-press-note__content"
-    }, slide.content));
-  }))));
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Save);
 
 /***/ }),
 
@@ -1319,10 +1319,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/editor.scss":
-/*!*************************!*\
-  !*** ./src/editor.scss ***!
-  \*************************/
+/***/ "./src/styles/editor.scss":
+/*!********************************!*\
+  !*** ./src/styles/editor.scss ***!
+  \********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -1332,10 +1332,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/style.scss":
-/*!************************!*\
-  !*** ./src/style.scss ***!
-  \************************/
+/***/ "./src/styles/style.scss":
+/*!*******************************!*\
+  !*** ./src/styles/style.scss ***!
+  \*******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";

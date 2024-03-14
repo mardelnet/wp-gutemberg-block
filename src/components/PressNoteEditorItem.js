@@ -11,7 +11,7 @@ import {
   parseDateString, 
   handleDateChange ,
   handleTypeChange
-} from './pressNoteFunctions';
+} from '../utils/pressNoteFunctions';
 
 const PressNoteEditorItem = ({ pressNote, index, setAttributes, pressNotes, setPressNotes }) => {
   const [isDatePickerVisible, setIsDatePickerVisible] = useState(false);
@@ -30,7 +30,7 @@ const PressNoteEditorItem = ({ pressNote, index, setAttributes, pressNotes, setP
         handleUpload={true}
         labels={{
           'title': '',
-          'instructions': 'Update Image'
+          'instructions': ''
         }}
       />
 
@@ -60,7 +60,7 @@ const PressNoteEditorItem = ({ pressNote, index, setAttributes, pressNotes, setP
         tagName="h3"
         onChange={newTitle => onChangeTitle(pressNotes, setPressNotes, setAttributes, newTitle, index)}
         value={pressNote.title}
-        placeholder={__('Título...')}
+        placeholder={__('Add title...')}
       />
 
       <RichText
@@ -68,7 +68,7 @@ const PressNoteEditorItem = ({ pressNote, index, setAttributes, pressNotes, setP
         tagName="p"
         onChange={newContent => onChangeContent(pressNotes, setPressNotes, setAttributes, newContent, index)}
         value={pressNote.content}
-        placeholder={__('Contenido...')}
+        placeholder={__('Add description...')}
       />
 
       <div className="single-press-note__date" onClick={() => { setIsDatePickerVisible(!isDatePickerVisible) }}>
