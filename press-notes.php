@@ -37,3 +37,56 @@ add_action( 'init', 'press_notes_press_notes_block_init' );
 add_action('enqueue_block_assets', function (): void {
   wp_enqueue_style('dashicons');
 });
+
+function enqueue_react_slick() {
+  // Enqueue react-slick script
+  wp_enqueue_script(
+      'react-slick',
+      'http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js',
+      array('jquery'), // Dependencies (if any)
+      '0.28.0', // Version
+      true // Load in footer
+  );
+
+  // Optionally enqueue slick CSS
+  wp_enqueue_style(
+      'slick-css',
+      'http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css',
+      array(), // Dependencies (if any)
+      '1.8.1' // Version
+  );
+
+  wp_add_inline_script('react-slick', '
+      jQuery(document).ready(function($) {
+          $(".slick-slider").slick({
+            dots: false,
+            arrows: false,
+            infinite: false,
+            speed: 500,
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            responsive: [
+              {
+                breakpoint: 1024,
+                settings: {
+                  slidesToShow: 3
+                }
+              },
+              {
+                breakpoint: 600,
+                settings: {
+                  slidesToShow: 2
+                }
+              },
+              {
+                breakpoint: 480,
+                settings: {
+                  slidesToShow: 1
+                }
+              }
+            ]
+          });
+      });
+  ');
+}
+add_action('wp_enqueue_scripts', 'enqueue_react_slick');

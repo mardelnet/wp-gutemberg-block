@@ -2,15 +2,142 @@
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/style.scss ***!
   \***************************************************************************************************************************************************************************************************************************************/
 /**
- * The following styles get applied both on the front of your site
- * and in the editor.
+ * The following styles get applied inside the editor only.
  *
  * Replace them with your own styles or remove the file completely.
  */
 .wp-block-press-notes-press-notes {
-  background-color: #21759b;
+  background-color: transparent;
   color: #fff;
-  padding: 2px;
+  padding: 0;
+  margin: 0 -7.5px;
+}
+.wp-block-press-notes-press-notes .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.wp-block-press-notes-press-notes .header h2 {
+  font-size: 20px;
+}
+.wp-block-press-notes-press-notes .components-base-control__field {
+  position: absolute;
+  top: 10px;
+  left: 50px;
+}
+.wp-block-press-notes-press-notes .components-datetime__date {
+  border: 1px solid #999;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.wp-block-press-notes-press-notes .components-placeholder button.is-primary {
+  display: none;
+}
+.wp-block-press-notes-press-notes .components-placeholder button.is-tertiary {
+  padding: 0 10px;
+  background: rgba(0, 0, 0, 0.5);
+  margin: 0;
+  color: white;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+.wp-block-press-notes-press-notes .single-press-note {
+  box-shadow: 0px 2px 5px #ddd;
+  background: white;
+  color: #000;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 0 7.5px;
+  position: relative;
+  height: 100%;
+}
+.wp-block-press-notes-press-notes .single-press-note__date {
+  position: absolute;
+  right: 10px;
+  top: 150px;
+  text-align: center;
+  background: white;
+  padding: 5px 10px 0px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  cursor: pointer;
+  min-height: 50px;
+  font-size: 11px;
+}
+.wp-block-press-notes-press-notes .single-press-note__date--day {
+  font-size: 30px;
+  line-height: 30px;
+}
+.wp-block-press-notes-press-notes .single-press-note__date span {
+  display: block;
+  line-height: 12px;
+}
+.wp-block-press-notes-press-notes .single-press-note__title {
+  box-shadow: none;
+  margin: 0;
+  background: white;
+  color: #222;
+  padding: 10px 10px 0;
+  font-size: 17px;
+}
+.wp-block-press-notes-press-notes .single-press-note__content {
+  box-shadow: none;
+  margin: 0;
+  background: white;
+  color: #666;
+  padding: 10px 10px 0;
+  font-size: 14px;
+}
+.wp-block-press-notes-press-notes .single-press-note__icon {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: white;
+  text-align: center;
+  font-size: 17px;
+  line-height: 30px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  color: #666;
+  cursor: pointer;
+}
+.wp-block-press-notes-press-notes .single-press-note__remove-button {
+  position: absolute;
+  cursor: pointer;
+  top: 10px;
+  right: 10px;
+  border: 0;
+  color: white;
+  font-size: 12.5px;
+  background: #999;
+  text-align: center;
+  padding: 5px 10px;
+}
+.wp-block-press-notes-press-notes .single-press-note .main-image {
+  box-shadow: none;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 200px;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  background-color: #666;
+  overflow: hidden;
+}
+
+.slick-track {
+  display: flex !important;
+}
+.slick-slide {
+  height: inherit !important;
+}
+.slick-slide > div {
+  height: 99%;
 }
 
 /*# sourceMappingURL=style-index.css.map*/
