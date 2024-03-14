@@ -20,7 +20,7 @@ const PressNoteEditorItem = ({ pressNote, index, setAttributes, pressNotes, setP
   const date = parseDateString(pressNote.date);
 
   return (
-    <div className="press-note__item">
+    <div className="single-press-note">
       <MediaPlaceholder
         style={{ backgroundImage: `url(${pressNote.imageUrl})` }}
         className='main-image'
@@ -36,7 +36,7 @@ const PressNoteEditorItem = ({ pressNote, index, setAttributes, pressNotes, setP
       />
 
       <Icon 
-        className="icon" 
+        className="single-press-note__icon" 
         onClick={() => { setIsTypePickerVisible(!isTypePickerVisible) }}
         icon={pressNote?.selectedOption ?? 'admin-site'} 
       />
@@ -57,6 +57,7 @@ const PressNoteEditorItem = ({ pressNote, index, setAttributes, pressNotes, setP
       )}
 
       <RichText
+        className="single-press-note__title"
         tagName="h3"
         onChange={newTitle => onChangeTitle(pressNotes, setPressNotes, setAttributes, newTitle, index)}
         value={pressNote.title}
@@ -64,34 +65,38 @@ const PressNoteEditorItem = ({ pressNote, index, setAttributes, pressNotes, setP
       />
 
       <RichText
+        className="single-press-note__content"
         tagName="p"
         onChange={newContent => onChangeContent(pressNotes, setPressNotes, setAttributes, newContent, index)}
         value={pressNote.content}
         placeholder={__('Contenido...')}
       />
 
-      <div className="date" onClick={() => { setIsDatePickerVisible(!isDatePickerVisible) }}>
+      <div className="single-press-note__date" onClick={() => { setIsDatePickerVisible(!isDatePickerVisible) }}>
         {!date && (
-          <div className="no-date">
+          <div>
             Select <span>date</span>
           </div>
         )}
         {date?.day && date?.month && (
           <div>
-            <div className="day">{date.day}</div>
-            <div className="month">{date.month}</div>
+            <div className="single-press-note__date--day">{date.day}</div>
+            <div className="single-press-note__date--month">{date.month}</div>
           </div>
         )}
       </div>
 
       {isDatePickerVisible && (
-        <DatePicker onChange={newDate => handleDateChange(pressNotes, setPressNotes, setAttributes, newDate, index, setIsDatePickerVisible)} />
+        <DatePicker 
+          onChange={
+            newDate => handleDateChange(
+              pressNotes, setPressNotes, setAttributes, newDate, index, setIsDatePickerVisible)} />
       )}
 
       <button
-       className="remove-button"
+       className="single-press-note__remove-button"
        onClick={() => removePressNote(pressNotes, setPressNotes, setAttributes, index)}>
-        x
+        Remove item
       </button>
     </div>
   );

@@ -41,7 +41,7 @@ const PressNoteEditorItem = ({
   const [isTypePickerVisible, setIsTypePickerVisible] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)(false);
   const date = (0,_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_5__.parseDateString)(pressNote.date);
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "press-note__item"
+    className: "single-press-note"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaPlaceholder, {
     style: {
       backgroundImage: `url(${pressNote.imageUrl})`
@@ -57,7 +57,7 @@ const PressNoteEditorItem = ({
       'instructions': 'Update Image'
     }
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Icon, {
-    className: "icon",
+    className: "single-press-note__icon",
     onClick: () => {
       setIsTypePickerVisible(!isTypePickerVisible);
     },
@@ -83,32 +83,32 @@ const PressNoteEditorItem = ({
     }],
     onChange: newIcon => (0,_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_5__.handleTypeChange)(pressNotes, setPressNotes, setAttributes, newIcon, index, setIsTypePickerVisible)
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+    className: "single-press-note__title",
     tagName: "h3",
     onChange: newTitle => (0,_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_5__.onChangeTitle)(pressNotes, setPressNotes, setAttributes, newTitle, index),
     value: pressNote.title,
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Título...')
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+    className: "single-press-note__content",
     tagName: "p",
     onChange: newContent => (0,_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_5__.onChangeContent)(pressNotes, setPressNotes, setAttributes, newContent, index),
     value: pressNote.content,
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Contenido...')
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "date",
+    className: "single-press-note__date",
     onClick: () => {
       setIsDatePickerVisible(!isDatePickerVisible);
     }
-  }, !date && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "no-date"
-  }, "Select ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, "date")), date?.day && date?.month && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "day"
+  }, !date && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, "Select ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, "date")), date?.day && date?.month && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "single-press-note__date--day"
   }, date.day), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "month"
+    className: "single-press-note__date--month"
   }, date.month))), isDatePickerVisible && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.DatePicker, {
     onChange: newDate => (0,_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_5__.handleDateChange)(pressNotes, setPressNotes, setAttributes, newDate, index, setIsDatePickerVisible)
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    className: "remove-button",
+    className: "single-press-note__remove-button",
     onClick: () => (0,_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_5__.removePressNote)(pressNotes, setPressNotes, setAttributes, index)
-  }, "x"));
+  }, "Remove item"));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PressNoteEditorItem);
 
