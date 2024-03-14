@@ -15,7 +15,6 @@ import './editor.scss';
 export default function Edit({ attributes, setAttributes }) {
     const [pressNotes, setPressNotes] = useState(attributes.pressNotes || []);
     const blockProps = useBlockProps();
-    const slider = React.useRef(null);
 
     return (
         <div {...blockProps}>
@@ -33,7 +32,7 @@ export default function Edit({ attributes, setAttributes }) {
               </div>
             </div>
 
-            <Slider ref={slider} {...sliderSettings}>
+            <Slider {...sliderSettings}>
               {pressNotes.map((pressNote, index) => (
                 <PressNoteEditorItem
                     key={index}

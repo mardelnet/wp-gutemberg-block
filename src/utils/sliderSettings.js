@@ -1,9 +1,9 @@
 const sliderSettings = {
   dots: false,
-  arrows: false,
+  arrows: true,
   infinite: false,
   speed: 500,
-  slidesToShow: 2,
+  slidesToShow: 3,
   slidesToScroll: 1,
   responsive: [
     {

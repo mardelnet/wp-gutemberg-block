@@ -160,7 +160,6 @@ function Edit({
 }) {
   const [pressNotes, setPressNotes] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)(attributes.pressNotes || []);
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)();
-  const slider = React.useRef(null);
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.BlockControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
@@ -174,7 +173,6 @@ function Edit({
     icon: "arrow-right-alt2",
     onClick: () => slider?.current?.slickNext()
   }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_slick__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    ref: slider,
     ..._utils_sliderSettings__WEBPACK_IMPORTED_MODULE_8__["default"]
   }, pressNotes.map((pressNote, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_PressNoteEditorItem__WEBPACK_IMPORTED_MODULE_6__["default"], {
     key: index,
@@ -450,10 +448,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 const sliderSettings = {
   dots: false,
-  arrows: false,
+  arrows: true,
   infinite: false,
   speed: 500,
-  slidesToShow: 2,
+  slidesToShow: 3,
   slidesToScroll: 1,
   responsive: [{
     breakpoint: 1024,
