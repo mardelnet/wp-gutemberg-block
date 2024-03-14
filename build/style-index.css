@@ -139,5 +139,21 @@
 .slick-slide > div {
   height: 99%;
 }
+.slick-slider .slider-arrow__next {
+  position: absolute;
+  top: -35px;
+  right: 0;
+  cursor: pointer;
+  color: #666;
+  font-size: 15px;
+}
+.slick-slider .slider-arrow__prev {
+  position: absolute;
+  top: -35px;
+  right: 25px;
+  cursor: pointer;
+  color: #666;
+  font-size: 15px;
+}
 
 /*# sourceMappingURL=style-index.css.map*/

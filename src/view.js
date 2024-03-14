@@ -1,10 +1,11 @@
-import sliderSettings from './utils/sliderSettings'
+import { sliderSettings } from './utils/sliderSettings'
 
-document.addEventListener("DOMContentLoaded", function() {
-  var slider = document.querySelector(".slick-slider");
-  
-  if (slider && window.jQuery && window.jQuery.fn.slick) {
-    var slickOptions = sliderSettings;
-    window.jQuery(slider).slick(slickOptions);
-  }
+const sliderSettingsWithArrows = {
+  ...sliderSettings,
+  nextArrow: '<span class="dashicons dashicons-arrow-right-alt2 slider-arrow__next"></span>',
+  prevArrow: '<span class="dashicons dashicons-arrow-left-alt2 slider-arrow__prev"></span>',
+};
+
+jQuery(document).ready(function(jQuery) {
+  jQuery(".slick-slider").slick(sliderSettingsWithArrows);
 });

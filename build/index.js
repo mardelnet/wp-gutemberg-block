@@ -133,16 +133,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _pressNoteFunctions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pressNoteFunctions */ "./src/pressNoteFunctions.js");
+/* harmony import */ var _pressNoteFunctions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pressNoteFunctions */ "./src/pressNoteFunctions.js");
+/* harmony import */ var _utils_sliderSettings__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./utils/sliderSettings */ "./src/utils/sliderSettings.js");
 /* harmony import */ var _PressNoteEditorItem__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./PressNoteEditorItem */ "./src/PressNoteEditorItem.js");
 /* harmony import */ var react_slick__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-slick */ "./node_modules/react-slick/lib/index.js");
-/* harmony import */ var _utils_sliderSettings__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./utils/sliderSettings */ "./src/utils/sliderSettings.js");
-/* harmony import */ var slick_carousel_slick_slick_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! slick-carousel/slick/slick.css */ "./node_modules/slick-carousel/slick/slick.css");
-/* harmony import */ var slick_carousel_slick_slick_theme_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! slick-carousel/slick/slick-theme.css */ "./node_modules/slick-carousel/slick/slick-theme.css");
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./editor.scss */ "./src/editor.scss");
-
+/* harmony import */ var slick_carousel_slick_slick_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! slick-carousel/slick/slick.css */ "./node_modules/slick-carousel/slick/slick.css");
+/* harmony import */ var slick_carousel_slick_slick_theme_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! slick-carousel/slick/slick-theme.css */ "./node_modules/slick-carousel/slick/slick-theme.css");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./editor.scss */ "./src/editor.scss");
 
 
 
@@ -163,17 +160,11 @@ function Edit({
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.BlockControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    onClick: () => (0,_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_5__.addPressNote)(pressNotes, setPressNotes, setAttributes)
+    onClick: () => (0,_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_4__.addPressNote)(pressNotes, setPressNotes, setAttributes)
   }, "Add Press Note")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "header"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "Notas de Prensa")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Icon, {
-    icon: "arrow-left-alt2",
-    onClick: () => slider?.current?.slickPrev()
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Icon, {
-    icon: "arrow-right-alt2",
-    onClick: () => slider?.current?.slickNext()
-  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_slick__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    ..._utils_sliderSettings__WEBPACK_IMPORTED_MODULE_8__["default"]
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "Notas de Prensa"))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_slick__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    ..._utils_sliderSettings__WEBPACK_IMPORTED_MODULE_5__.sliderSettingsWithArrows
   }, pressNotes.map((pressNote, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_PressNoteEditorItem__WEBPACK_IMPORTED_MODULE_6__["default"], {
     key: index,
     pressNote: pressNote,
@@ -444,12 +435,41 @@ const Save = ({
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   sliderSettings: () => (/* binding */ sliderSettings),
+/* harmony export */   sliderSettingsWithArrows: () => (/* binding */ sliderSettingsWithArrows)
 /* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function SampleNextArrow(props) {
+  const {
+    onClick
+  } = props;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Icon, {
+    icon: "arrow-right-alt2",
+    onClick: onClick,
+    className: "slider-arrow__next"
+  });
+}
+function SamplePrevArrow(props) {
+  const {
+    onClick
+  } = props;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Icon, {
+    icon: "arrow-left-alt2",
+    onClick: onClick,
+    className: "slider-arrow__prev"
+  });
+}
 const sliderSettings = {
   dots: false,
   arrows: true,
   infinite: false,
+  autoplay: true,
+  pauseOnHover: true,
   speed: 500,
   slidesToShow: 3,
   slidesToScroll: 1,
@@ -470,7 +490,11 @@ const sliderSettings = {
     }
   }]
 };
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (sliderSettings);
+const sliderSettingsWithArrows = {
+  ...sliderSettings,
+  nextArrow: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(SampleNextArrow, null),
+  prevArrow: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(SamplePrevArrow, null)
+};
 
 /***/ }),
 

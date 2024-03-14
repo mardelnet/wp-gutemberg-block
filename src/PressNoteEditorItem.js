@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { MediaPlaceholder, RichText } from '@wordpress/block-editor';
 import { DatePicker, SelectControl, Icon } from '@wordpress/components';
-import { useState } from '@wordpress/element';
+import { useState, useEffect } from '@wordpress/element';
 
 import { 
   onChangeTitle, 
@@ -16,7 +16,6 @@ import {
 const PressNoteEditorItem = ({ pressNote, index, setAttributes, pressNotes, setPressNotes }) => {
   const [isDatePickerVisible, setIsDatePickerVisible] = useState(false);
   const [isTypePickerVisible, setIsTypePickerVisible] = useState(false);
-
   const date = parseDateString(pressNote.date);
 
   return (

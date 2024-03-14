@@ -1,7 +1,21 @@
-const sliderSettings = {
+import { Icon } from '@wordpress/components';
+
+function SampleNextArrow(props) {
+  const { onClick } = props;
+  return ( <Icon icon="arrow-right-alt2" onClick={onClick} className="slider-arrow__next" /> );
+}
+
+function SamplePrevArrow(props) {
+  const { onClick } = props;
+  return ( <Icon icon="arrow-left-alt2" onClick={onClick} className="slider-arrow__prev" /> );
+}
+
+export const sliderSettings = {
   dots: false,
   arrows: true,
   infinite: false,
+  autoplay: true,
+  pauseOnHover: true,
   speed: 500,
   slidesToShow: 3,
   slidesToScroll: 1,
@@ -27,4 +41,8 @@ const sliderSettings = {
   ]
 };
 
-export default sliderSettings;
+export const sliderSettingsWithArrows = {
+  ...sliderSettings,
+  nextArrow: <SampleNextArrow />,
+  prevArrow: <SamplePrevArrow />,
+};

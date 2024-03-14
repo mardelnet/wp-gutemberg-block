@@ -10,12 +10,41 @@
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   sliderSettings: () => (/* binding */ sliderSettings),
+/* harmony export */   sliderSettingsWithArrows: () => (/* binding */ sliderSettingsWithArrows)
 /* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function SampleNextArrow(props) {
+  const {
+    onClick
+  } = props;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Icon, {
+    icon: "arrow-right-alt2",
+    onClick: onClick,
+    className: "slider-arrow__next"
+  });
+}
+function SamplePrevArrow(props) {
+  const {
+    onClick
+  } = props;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Icon, {
+    icon: "arrow-left-alt2",
+    onClick: onClick,
+    className: "slider-arrow__prev"
+  });
+}
 const sliderSettings = {
   dots: false,
   arrows: true,
   infinite: false,
+  autoplay: true,
+  pauseOnHover: true,
   speed: 500,
   slidesToShow: 3,
   slidesToScroll: 1,
@@ -36,7 +65,31 @@ const sliderSettings = {
     }
   }]
 };
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (sliderSettings);
+const sliderSettingsWithArrows = {
+  ...sliderSettings,
+  nextArrow: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(SampleNextArrow, null),
+  prevArrow: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(SamplePrevArrow, null)
+};
+
+/***/ }),
+
+/***/ "react":
+/*!************************!*\
+  !*** external "React" ***!
+  \************************/
+/***/ ((module) => {
+
+module.exports = window["React"];
+
+/***/ }),
+
+/***/ "@wordpress/components":
+/*!************************************!*\
+  !*** external ["wp","components"] ***!
+  \************************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["components"];
 
 /***/ })
 
@@ -67,6 +120,18 @@ const sliderSettings = {
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -105,12 +170,13 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_sliderSettings__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/sliderSettings */ "./src/utils/sliderSettings.js");
 
-document.addEventListener("DOMContentLoaded", function () {
-  var slider = document.querySelector(".slick-slider");
-  if (slider && window.jQuery && window.jQuery.fn.slick) {
-    var slickOptions = _utils_sliderSettings__WEBPACK_IMPORTED_MODULE_0__["default"];
-    window.jQuery(slider).slick(slickOptions);
-  }
+const sliderSettingsWithArrows = {
+  ..._utils_sliderSettings__WEBPACK_IMPORTED_MODULE_0__.sliderSettings,
+  nextArrow: '<span class="dashicons dashicons-arrow-right-alt2 slider-arrow__next"></span>',
+  prevArrow: '<span class="dashicons dashicons-arrow-left-alt2 slider-arrow__prev"></span>'
+};
+jQuery(document).ready(function (jQuery) {
+  jQuery(".slick-slider").slick(sliderSettingsWithArrows);
 });
 })();
 
