@@ -55,38 +55,5 @@ function enqueue_react_slick() {
       array(), // Dependencies (if any)
       '1.8.1' // Version
   );
-
-  wp_add_inline_script('react-slick', '
-      jQuery(document).ready(function($) {
-          $(".slick-slider").slick({
-            dots: false,
-            arrows: false,
-            infinite: false,
-            speed: 500,
-            slidesToShow: 2,
-            slidesToScroll: 1,
-            responsive: [
-              {
-                breakpoint: 1024,
-                settings: {
-                  slidesToShow: 3
-                }
-              },
-              {
-                breakpoint: 600,
-                settings: {
-                  slidesToShow: 2
-                }
-              },
-              {
-                breakpoint: 480,
-                settings: {
-                  slidesToShow: 1
-                }
-              }
-            ]
-          });
-      });
-  ');
 }
 add_action('wp_enqueue_scripts', 'enqueue_react_slick');
