@@ -32,6 +32,9 @@
           "date": {
 						"type": "string"
 					},
+          "selectedOption": {
+            "type": "string"
+          },
 					"imageUrl": {
 						"type": "string"
 					},

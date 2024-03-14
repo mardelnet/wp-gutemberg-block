@@ -1,11 +1,22 @@
 import { __ } from '@wordpress/i18n';
 import { MediaPlaceholder, RichText } from '@wordpress/block-editor';
-import { onChangeTitle, onChangeContent, setImageAttributes, removePressNote, parseDateString, handleDateChange } from './pressNoteFunctions';
-import { DatePicker } from '@wordpress/components';
+import { DatePicker, SelectControl, Icon } from '@wordpress/components';
 import { useState } from '@wordpress/element';
+
+import { 
+  onChangeTitle, 
+  onChangeContent, 
+  setImageAttributes, 
+  removePressNote, 
+  parseDateString, 
+  handleDateChange ,
+  handleTypeChange
+} from './pressNoteFunctions';
 
 const PressNoteEditorItem = ({ pressNote, index, setAttributes, pressNotes, setPressNotes }) => {
   const [isDatePickerVisible, setIsDatePickerVisible] = useState(false);
+  const [isTypePickerVisible, setIsTypePickerVisible] = useState(false);
+
   const date = parseDateString(pressNote.date);
 
   return (
@@ -23,6 +34,27 @@ const PressNoteEditorItem = ({ pressNote, index, setAttributes, pressNotes, setP
           'instructions': 'Update Image'
         }}
       />
+
+      <Icon 
+        className="icon" 
+        onClick={() => { setIsTypePickerVisible(!isTypePickerVisible) }}
+        icon={pressNote?.selectedOption ?? 'admin-site'} 
+      />
+      
+      {isTypePickerVisible && (
+        <SelectControl
+          label={''}
+          value={pressNote.selectedOption}
+          options={[
+              { label: __('Icono 1'), value: 'admin-site' },
+              { label: __('Icono 2'), value: 'admin-post' },
+              { label: __('Icono 3'), value: 'admin-tools' },
+              { label: __('Icono 4'), value: 'admin-comments' },
+              { label: __('Icono 5'), value: 'admin-users' },
+          ]}
+          onChange={newIcon => handleTypeChange(pressNotes, setPressNotes, setAttributes, newIcon, index, setIsTypePickerVisible)}
+        />
+      )}
 
       <RichText
         tagName="h3"

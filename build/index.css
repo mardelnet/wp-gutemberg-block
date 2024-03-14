@@ -451,4 +451,25 @@
   align-items: center; /* Align items vertically in the center */
 }
 
+span.icon {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: white;
+  text-align: center;
+  font-size: 17px;
+  line-height: 30px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  color: #666;
+  cursor: pointer;
+}
+
+.components-base-control__field {
+  position: absolute;
+  top: 10px;
+  left: 50px;
+}
+
 /*# sourceMappingURL=index.css.map*/

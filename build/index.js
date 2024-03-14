@@ -18,11 +18,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _pressNoteFunctions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pressNoteFunctions */ "./src/pressNoteFunctions.js");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _pressNoteFunctions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pressNoteFunctions */ "./src/pressNoteFunctions.js");
 
 
 
@@ -36,8 +36,10 @@ const PressNoteEditorItem = ({
   pressNotes,
   setPressNotes
 }) => {
-  const [isDatePickerVisible, setIsDatePickerVisible] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useState)(false);
-  const date = (0,_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_3__.parseDateString)(pressNote.date);
+  var _pressNote$selectedOp;
+  const [isDatePickerVisible, setIsDatePickerVisible] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)(false);
+  const [isTypePickerVisible, setIsTypePickerVisible] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)(false);
+  const date = (0,_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_5__.parseDateString)(pressNote.date);
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "press-note__item"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaPlaceholder, {
@@ -47,21 +49,47 @@ const PressNoteEditorItem = ({
     className: "main-image",
     accept: "image/*",
     allowedTypes: ['image'],
-    onSelect: media => (0,_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_3__.setImageAttributes)(pressNotes, setPressNotes, setAttributes, media, index),
+    onSelect: media => (0,_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_5__.setImageAttributes)(pressNotes, setPressNotes, setAttributes, media, index),
     multiple: false,
     handleUpload: true,
     labels: {
       'title': '',
       'instructions': 'Update Image'
     }
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Icon, {
+    className: "icon",
+    onClick: () => {
+      setIsTypePickerVisible(!isTypePickerVisible);
+    },
+    icon: (_pressNote$selectedOp = pressNote?.selectedOption) !== null && _pressNote$selectedOp !== void 0 ? _pressNote$selectedOp : 'admin-site'
+  }), isTypePickerVisible && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
+    label: '',
+    value: pressNote.selectedOption,
+    options: [{
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Icono 1'),
+      value: 'admin-site'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Icono 2'),
+      value: 'admin-post'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Icono 3'),
+      value: 'admin-tools'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Icono 4'),
+      value: 'admin-comments'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Icono 5'),
+      value: 'admin-users'
+    }],
+    onChange: newIcon => (0,_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_5__.handleTypeChange)(pressNotes, setPressNotes, setAttributes, newIcon, index, setIsTypePickerVisible)
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
     tagName: "h3",
-    onChange: newTitle => (0,_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_3__.onChangeTitle)(pressNotes, setPressNotes, setAttributes, newTitle, index),
+    onChange: newTitle => (0,_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_5__.onChangeTitle)(pressNotes, setPressNotes, setAttributes, newTitle, index),
     value: pressNote.title,
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Título...')
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
     tagName: "p",
-    onChange: newContent => (0,_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_3__.onChangeContent)(pressNotes, setPressNotes, setAttributes, newContent, index),
+    onChange: newContent => (0,_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_5__.onChangeContent)(pressNotes, setPressNotes, setAttributes, newContent, index),
     value: pressNote.content,
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Contenido...')
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -75,11 +103,11 @@ const PressNoteEditorItem = ({
     className: "day"
   }, date.day), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "month"
-  }, date.month))), isDatePickerVisible && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.DatePicker, {
-    onChange: newDate => (0,_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_3__.handleDateChange)(pressNotes, setPressNotes, setAttributes, newDate, index, setIsDatePickerVisible)
+  }, date.month))), isDatePickerVisible && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.DatePicker, {
+    onChange: newDate => (0,_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_5__.handleDateChange)(pressNotes, setPressNotes, setAttributes, newDate, index, setIsDatePickerVisible)
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     className: "remove-button",
-    onClick: () => (0,_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_3__.removePressNote)(pressNotes, setPressNotes, setAttributes, index)
+    onClick: () => (0,_pressNoteFunctions__WEBPACK_IMPORTED_MODULE_5__.removePressNote)(pressNotes, setPressNotes, setAttributes, index)
   }, "x"));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PressNoteEditorItem);
@@ -227,6 +255,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   addPressNote: () => (/* binding */ addPressNote),
 /* harmony export */   handleDateChange: () => (/* binding */ handleDateChange),
+/* harmony export */   handleTypeChange: () => (/* binding */ handleTypeChange),
 /* harmony export */   onChangeContent: () => (/* binding */ onChangeContent),
 /* harmony export */   onChangeTitle: () => (/* binding */ onChangeTitle),
 /* harmony export */   parseDateString: () => (/* binding */ parseDateString),
@@ -263,6 +292,18 @@ const handleDateChange = (pressNotes, setPressNotes, setAttributes, date, index,
   };
   setPressNotes(updatedPressNotes);
   setIsDatePickerVisible(false);
+  setAttributes({
+    pressNotes: updatedPressNotes
+  });
+};
+const handleTypeChange = (pressNotes, setPressNotes, setAttributes, newOption, index, setIsTypePickerVisible) => {
+  const updatedPressNotes = [...pressNotes];
+  updatedPressNotes[index] = {
+    ...updatedPressNotes[index],
+    selectedOption: newOption
+  };
+  setPressNotes(updatedPressNotes);
+  setIsTypePickerVisible(false);
   setAttributes({
     pressNotes: updatedPressNotes
   });
@@ -315,14 +356,9 @@ const parseDateString = dateString => {
   if (isNaN(date.getTime())) {
     return null;
   }
-
-  // Array of month names
   const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
-  // Extract day and month from the Date object
   const day = date.getDate();
-  const month = monthNames[date.getMonth()]; // Get the month name using the month number
-
+  const month = monthNames[date.getMonth()];
   return {
     day,
     month
@@ -4760,7 +4796,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"press-notes/press-notes","version":"0.1.0","title":"Press Notes Block","category":"widgets","icon":"smiley","description":"The Press Notes Gutenberg Block","example":{},"supports":{"html":false},"textdomain":"press-notes","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"pressNotes":{"type":"array","default":[],"items":{"type":"object","properties":{"title":{"type":"string"},"content":{"type":"string"},"date":{"type":"string"},"imageUrl":{"type":"string"},"imageId":{"type":"number"},"imageAlt":{"type":"string"}}}}}}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"press-notes/press-notes","version":"0.1.0","title":"Press Notes Block","category":"widgets","icon":"smiley","description":"The Press Notes Gutenberg Block","example":{},"supports":{"html":false},"textdomain":"press-notes","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js","attributes":{"pressNotes":{"type":"array","default":[],"items":{"type":"object","properties":{"title":{"type":"string"},"content":{"type":"string"},"date":{"type":"string"},"selectedOption":{"type":"string"},"imageUrl":{"type":"string"},"imageId":{"type":"number"},"imageAlt":{"type":"string"}}}}}}');
 
 /***/ })
 

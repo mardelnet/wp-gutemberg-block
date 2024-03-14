@@ -20,6 +20,14 @@ export const handleDateChange = (pressNotes, setPressNotes, setAttributes, date,
   setAttributes({ pressNotes: updatedPressNotes });
 };
 
+export const handleTypeChange = (pressNotes, setPressNotes, setAttributes, newOption, index, setIsTypePickerVisible) => {
+    const updatedPressNotes = [...pressNotes];
+    updatedPressNotes[index] = { ...updatedPressNotes[index], selectedOption: newOption };
+    setPressNotes(updatedPressNotes);
+    setIsTypePickerVisible(false);
+    setAttributes({ pressNotes: updatedPressNotes });
+};
+
 export const setImageAttributes = (pressNotes, setPressNotes, setAttributes, media, index) => {
     const updatedPressNotes = [...pressNotes];
     if (!media || !media.url) {
@@ -50,16 +58,13 @@ export const parseDateString = (dateString) => {
   if (isNaN(date.getTime())) {
     return null;
   }
-
-  // Array of month names
   const monthNames = [
     "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
   ];
 
-  // Extract day and month from the Date object
   const day = date.getDate();
-  const month = monthNames[date.getMonth()]; // Get the month name using the month number
+  const month = monthNames[date.getMonth()];
 
   return { day, month };
 }
