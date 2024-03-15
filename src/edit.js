@@ -13,7 +13,14 @@ import './styles/editor.scss';
 
 export default function Edit({ attributes, setAttributes }) {
     const [pressNotes, setPressNotes] = useState(attributes.pressNotes || []);
+    const [featuredIndex, setFeaturedIndex] = useState(null);
     const blockProps = useBlockProps();
+
+    const addFeaturedPressNote = (index) => {
+      setFeaturedIndex(index);
+    };
+
+    console.log(featuredIndex);
 
     return (
         <div {...blockProps}>
@@ -25,19 +32,37 @@ export default function Edit({ attributes, setAttributes }) {
                 <h2>Notas de Prensa</h2>
             </div>
 
-            <Slider {...sliderSettingsWithArrows}>
-              {pressNotes.map((pressNote, index) => (
-                <PressNoteEditorItem
-                    key={index}
-                    pressNote={pressNote}
-                    index={index}
-                    attributes={attributes}
-                    setAttributes={setAttributes}
-                    pressNotes={pressNotes}
-                    setPressNotes={setPressNotes}
-                />
-              ))}
-            </Slider>
+            <div className="slider-container">
+              {featuredIndex && pressNotes[featuredIndex] && (
+                <div className="slider-container__featured">
+                  <PressNoteEditorItem
+                      pressNote={pressNotes[featuredIndex]}
+                      attributes={attributes}
+                      setAttributes={setAttributes}
+                      pressNotes={pressNotes}
+                      setPressNotes={setPressNotes}
+                      isFeatured={true}
+                  />
+                </div>
+              )}
+              <div className="slider-container__slides">
+                <Slider {...sliderSettingsWithArrows}>
+                  {pressNotes.map((pressNote, index) => (
+                    <PressNoteEditorItem
+                        key={index}
+                        pressNote={pressNote}
+                        index={index}
+                        attributes={attributes}
+                        setAttributes={setAttributes}
+                        pressNotes={pressNotes}
+                        setPressNotes={setPressNotes}
+                        addFeaturedPressNote={addFeaturedPressNote}
+                        isFeatured={false}
+                    />
+                  ))}
+                </Slider>
+              </div>
+            </div>
         </div>
     );
 }

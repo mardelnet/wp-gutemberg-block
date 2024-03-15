@@ -1,3 +1,21 @@
+@mixin button-styles {
+  position: absolute;
+  cursor: pointer;
+  right: 10px;
+  border: 0;
+  color: white;
+  font-size: 12.5px;
+  line-height: 12.5px;
+  background: #999;
+  text-align: center;
+  padding: 5px 10px;
+  height: auto;
+
+  &:hover {
+    background-color: #666;
+  }
+}
+
 .components {
 
   &-base-control__field {
@@ -20,13 +38,8 @@
     }
 
     button.is-tertiary {
-      padding: 0 10px;
-      background: rgba(0, 0, 0, 0.5);
-      margin: 0;
-      color: white;
-      position: absolute;
-      bottom: 10px;
-      left: 10px;
+      @include button-styles;
+      top: 10px;
     }
   }
 }
@@ -45,15 +58,12 @@
   }
 
   &__remove-button {
-    position: absolute;
-    cursor: pointer;
-    top: 10px;
-    right: 10px;
-    border: 0;
-    color: white;
-    font-size: 12.5px;
-    background: #999;
-    text-align: center;
-    padding: 5px 10px;
+    @include button-styles;
+    top: 70px;
+  }
+
+  &__featured-button {
+    @include button-styles;
+    top: 40px;
   }
 }

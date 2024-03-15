@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { MediaPlaceholder, RichText } from '@wordpress/block-editor';
 import { SelectControl, Icon } from '@wordpress/components';
-import { useState } from '@wordpress/element';
+import { useState, useEffect } from '@wordpress/element';
 import DateSelector from './DateSelector';
 
 import { 
@@ -14,10 +14,14 @@ import {
   handleTypeChange
 } from '../utils/pressNoteFunctions';
 
-const PressNoteEditorItem = ({ pressNote, index, setAttributes, pressNotes, setPressNotes }) => {
+const PressNoteEditorItem = ({ pressNote, index, setAttributes, pressNotes, setPressNotes, addFeaturedPressNote, isFeatured }) => {
   const [isDatePickerVisible, setIsDatePickerVisible] = useState(false);
   const [isTypePickerVisible, setIsTypePickerVisible] = useState(false);
   const date = parseDateString(pressNote.date);
+
+  const handleAddFeatured = () => {
+    addFeaturedPressNote(index);
+  };
 
   return (
     <div className="single-press-note">
@@ -83,11 +87,27 @@ const PressNoteEditorItem = ({ pressNote, index, setAttributes, pressNotes, setP
         index={index}
       />
 
-      <button
-       className="single-press-note__remove-button"
-       onClick={() => removePressNote(pressNotes, setPressNotes, setAttributes, index)}>
-        Remove item
-      </button>
+      {!isFeatured && (
+        <>
+        <button
+          className="single-press-note__remove-button"
+          onClick={() => removePressNote(pressNotes, setPressNotes, setAttributes, index)}>
+          Remove item
+        </button>
+
+        <button className="single-press-note__featured-button" onClick={handleAddFeatured}>
+          {__('Add as Featured')}
+        </button>
+        </>
+      )}
+
+      {isFeatured && (
+        <>
+        <button className="single-press-note__featured-button" onClick={handleAddFeatured}>
+          {__('Removed as Featured')}
+        </button>
+        </>
+      )}
     </div>
   );
 };
