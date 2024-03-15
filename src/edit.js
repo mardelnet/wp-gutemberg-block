@@ -2,7 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { useBlockProps, BlockControls } from '@wordpress/block-editor';
 import { useState, useEffect } from '@wordpress/element';
 import { addPressNote, addFeaturedPressNote, removeFeaturedPressNote } from './utils/pressNoteFunctions';
-import { sliderSettingsWithArrows } from './utils/sliderSettings'
+import { sliderSettingsWithArrows } from './utils/sliderSettings';
 
 import PressNoteEditorItem from './components/PressNoteEditorItem';
 import Slider from 'react-slick';
@@ -11,6 +11,13 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './styles/editor.scss';
 
+/**
+ * Edit component for the Press Note block.
+ * @param {Object} props - Props for the Edit component.
+ * @param {Object} props.attributes - Block attributes.
+ * @param {Function} props.setAttributes - Function to set block attributes.
+ * @returns {JSX.Element} The Edit component.
+ */
 export default function Edit({ attributes, setAttributes }) {
     const [pressNotes, setPressNotes] = useState(attributes.pressNotes || []);
     const [featuredIndex, setFeaturedIndex] = useState(attributes.featuredPressNote);

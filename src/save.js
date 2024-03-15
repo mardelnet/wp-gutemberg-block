@@ -2,6 +2,12 @@ import { useBlockProps } from '@wordpress/block-editor';
 import { Icon } from '@wordpress/components';
 import { parseDateString } from './utils/pressNoteFunctions';
 
+/**
+ * Save component for the Press Note block.
+ * @param {Object} props - Props for the Save component.
+ * @param {Object} props.attributes - Block attributes.
+ * @returns {JSX.Element} The Save component.
+ */
 const Save = ({ attributes }) => {
     const blockProps = useBlockProps.save();
     const featuredIndex = attributes?.featuredPressNote;

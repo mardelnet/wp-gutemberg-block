@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { MediaPlaceholder, RichText } from '@wordpress/block-editor';
 import { SelectControl, Icon } from '@wordpress/components';
-import { useState, useEffect } from '@wordpress/element';
+import { useState } from '@wordpress/element';
 import DateSelector from './DateSelector';
 
 import { 
@@ -14,6 +14,20 @@ import {
   handleTypeChange
 } from '../utils/pressNoteFunctions';
 
+/**
+ * Component for editing a single press note item.
+ * @param {Object} props - Props for the PressNoteEditorItem component.
+ * @param {Object} props.pressNote - The press note object.
+ * @param {number} props.index - The index of the press note in the array.
+ * @param {Function} props.setAttributes - Function to set attributes.
+ * @param {Array} props.pressNotes - Array of press notes.
+ * @param {Function} props.setPressNotes - Function to set press notes.
+ * @param {Function} props.addFeaturedPressNote - Function to add a press note as featured.
+ * @param {Function} props.removeFeaturedPressNote - Function to remove a press note as featured.
+ * @param {Function} props.setFeaturedIndex - Function to set the index of the featured press note.
+ * @param {boolean} props.isFeatured - Flag indicating whether the press note is featured.
+ * @returns {JSX.Element} PressNoteEditorItem component.
+ */
 const PressNoteEditorItem = ({ pressNote, index, setAttributes, pressNotes, setPressNotes, addFeaturedPressNote, removeFeaturedPressNote, setFeaturedIndex, isFeatured }) => {
   const [isDatePickerVisible, setIsDatePickerVisible] = useState(false);
   const [isTypePickerVisible, setIsTypePickerVisible] = useState(false);
