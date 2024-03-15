@@ -1,69 +1,74 @@
 @mixin button-styles {
-  position: absolute;
-  cursor: pointer;
-  right: 10px;
-  border: 0;
-  color: white;
-  font-size: 12.5px;
-  line-height: 12.5px;
-  background: #999;
-  text-align: center;
-  padding: 5px 10px;
-  height: auto;
+	position: absolute;
+	cursor: pointer;
+	right: 10px;
+	border: 0;
+	color: white;
+	font-size: 12.5px;
+	line-height: 12.5px;
+	background: #999;
+	text-align: center;
+	padding: 5px 10px;
+	height: auto;
 
-  &:hover {
-    background-color: #666;
-  }
+	&:hover {
+		background-color: #666;
+	}
 }
 
 .components {
 
-  &-base-control__field {
-    position: absolute;
-    top: 10px;
-    left: 50px;
-  }
+	&-base-control__field {
+		position: absolute;
+		top: 10px;
+		left: 50px;
+	}
 
-  &-datetime__date {
-    border: 1px solid #999;
-    border-radius: 5px;
-    margin: 10px;
-    padding: 10px;
-    box-sizing: border-box;
-  }
+	&-datetime__date {
+		border: 1px solid #999;
+		border-radius: 5px;
+		margin: 10px;
+		padding: 10px;
+		box-sizing: border-box;
+	}
 
-  &-placeholder {
-    button.is-primary {
-      display: none;
-    }
+	&-placeholder {
 
-    button.is-tertiary {
-      @include button-styles;
-      top: 10px;
-    }
-  }
+		button.is-primary {
+			display: none;
+		}
+
+		button.is-tertiary {
+
+			@include button-styles;
+			top: 10px;
+		}
+	}
 }
 
 .single-press-note {
-  
-  &__date {
-    span {
-      display: block;
-      line-height: 12px;
-    }
-  }
 
-  &__icon {
-    cursor: pointer;
-  }
+	&__date {
 
-  &__remove-button {
-    @include button-styles;
-    top: 70px;
-  }
+		span {
+			display: block;
+			line-height: 12px;
+		}
+	}
 
-  &__featured-button {
-    @include button-styles;
-    top: 40px;
-  }
+	&__icon {
+		cursor: pointer;
+	}
+
+	&__remove-button {
+
+		@include button-styles;
+		top: 70px;
+	}
+
+	&__featured-button {
+
+		@include button-styles;
+		top: 40px;
+	}
 }
