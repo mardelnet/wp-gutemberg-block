@@ -14,14 +14,10 @@ import {
   handleTypeChange
 } from '../utils/pressNoteFunctions';
 
-const PressNoteEditorItem = ({ pressNote, index, setAttributes, pressNotes, setPressNotes, addFeaturedPressNote, isFeatured }) => {
+const PressNoteEditorItem = ({ pressNote, index, setAttributes, pressNotes, setPressNotes, addFeaturedPressNote, removeFeaturedPressNote, setFeaturedIndex, isFeatured }) => {
   const [isDatePickerVisible, setIsDatePickerVisible] = useState(false);
   const [isTypePickerVisible, setIsTypePickerVisible] = useState(false);
   const date = parseDateString(pressNote.date);
-
-  const handleAddFeatured = () => {
-    addFeaturedPressNote(index);
-  };
 
   return (
     <div className="single-press-note">
@@ -95,7 +91,7 @@ const PressNoteEditorItem = ({ pressNote, index, setAttributes, pressNotes, setP
           Remove item
         </button>
 
-        <button className="single-press-note__featured-button" onClick={handleAddFeatured}>
+        <button className="single-press-note__featured-button" onClick={() => { addFeaturedPressNote(setFeaturedIndex, index) }}>
           {__('Add as Featured')}
         </button>
         </>
@@ -103,8 +99,8 @@ const PressNoteEditorItem = ({ pressNote, index, setAttributes, pressNotes, setP
 
       {isFeatured && (
         <>
-        <button className="single-press-note__featured-button" onClick={handleAddFeatured}>
-          {__('Removed as Featured')}
+        <button className="single-press-note__featured-button" onClick={() => { removeFeaturedPressNote(setFeaturedIndex) }}>
+          {__('Remove as Featured')}
         </button>
         </>
       )}

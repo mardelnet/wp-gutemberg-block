@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, BlockControls } from '@wordpress/block-editor';
 import { useState } from '@wordpress/element';
-import { addPressNote } from './utils/pressNoteFunctions';
+import { addPressNote, addFeaturedPressNote, removeFeaturedPressNote } from './utils/pressNoteFunctions';
 import { sliderSettingsWithArrows } from './utils/sliderSettings'
 
 import PressNoteEditorItem from './components/PressNoteEditorItem';
@@ -16,12 +16,6 @@ export default function Edit({ attributes, setAttributes }) {
     const [featuredIndex, setFeaturedIndex] = useState(null);
     const blockProps = useBlockProps();
 
-    const addFeaturedPressNote = (index) => {
-      setFeaturedIndex(index);
-    };
-
-    console.log(featuredIndex);
-
     return (
         <div {...blockProps}>
             <BlockControls>
@@ -33,7 +27,7 @@ export default function Edit({ attributes, setAttributes }) {
             </div>
 
             <div className="slider-container">
-              {featuredIndex && pressNotes[featuredIndex] && (
+              {featuredIndex !== null && pressNotes[featuredIndex] && (
                 <div className="slider-container__featured">
                   <PressNoteEditorItem
                       pressNote={pressNotes[featuredIndex]}
@@ -42,6 +36,9 @@ export default function Edit({ attributes, setAttributes }) {
                       pressNotes={pressNotes}
                       setPressNotes={setPressNotes}
                       isFeatured={true}
+                      setFeaturedIndex={setFeaturedIndex}
+                      removeFeaturedPressNote={removeFeaturedPressNote}
+                      index={featuredIndex}
                   />
                 </div>
               )}
@@ -56,6 +53,7 @@ export default function Edit({ attributes, setAttributes }) {
                         setAttributes={setAttributes}
                         pressNotes={pressNotes}
                         setPressNotes={setPressNotes}
+                        setFeaturedIndex={setFeaturedIndex}
                         addFeaturedPressNote={addFeaturedPressNote}
                         isFeatured={false}
                     />
