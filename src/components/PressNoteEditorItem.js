@@ -1,7 +1,8 @@
 import { __ } from '@wordpress/i18n';
 import { MediaPlaceholder, RichText } from '@wordpress/block-editor';
-import { DatePicker, SelectControl, Icon } from '@wordpress/components';
-import { useState, useEffect } from '@wordpress/element';
+import { SelectControl, Icon } from '@wordpress/components';
+import { useState } from '@wordpress/element';
+import DateSelector from './DateSelector';
 
 import { 
   onChangeTitle, 
@@ -71,26 +72,16 @@ const PressNoteEditorItem = ({ pressNote, index, setAttributes, pressNotes, setP
         placeholder={__('Add description...')}
       />
 
-      <div className="single-press-note__date" onClick={() => { setIsDatePickerVisible(!isDatePickerVisible) }}>
-        {!date && (
-          <div>
-            Select <span>date</span>
-          </div>
-        )}
-        {date?.day && date?.month && (
-          <div>
-            <div className="single-press-note__date--day">{date.day}</div>
-            <div className="single-press-note__date--month">{date.month}</div>
-          </div>
-        )}
-      </div>
-
-      {isDatePickerVisible && (
-        <DatePicker 
-          onChange={
-            newDate => handleDateChange(
-              pressNotes, setPressNotes, setAttributes, newDate, index, setIsDatePickerVisible)} />
-      )}
+      <DateSelector
+        date={date}
+        isDatePickerVisible={isDatePickerVisible}
+        setIsDatePickerVisible={setIsDatePickerVisible}
+        handleDateChange={handleDateChange}
+        pressNotes={pressNotes}
+        setPressNotes={setPressNotes}
+        setAttributes={setAttributes}
+        index={index}
+      />
 
       <button
        className="single-press-note__remove-button"
