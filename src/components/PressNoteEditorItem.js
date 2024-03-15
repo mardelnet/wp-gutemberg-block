@@ -91,7 +91,7 @@ const PressNoteEditorItem = ({ pressNote, index, setAttributes, pressNotes, setP
           Remove item
         </button>
 
-        <button className="single-press-note__featured-button" onClick={() => { addFeaturedPressNote(setFeaturedIndex, index) }}>
+        <button className="single-press-note__featured-button" onClick={() => { addFeaturedPressNote(setFeaturedIndex, setAttributes, index) }}>
           {__('Add as Featured')}
         </button>
         </>
@@ -99,7 +99,7 @@ const PressNoteEditorItem = ({ pressNote, index, setAttributes, pressNotes, setP
 
       {isFeatured && (
         <>
-        <button className="single-press-note__featured-button" onClick={() => { removeFeaturedPressNote(setFeaturedIndex) }}>
+        <button className="single-press-note__featured-button" onClick={() => { removeFeaturedPressNote(setFeaturedIndex, setAttributes) }}>
           {__('Remove as Featured')}
         </button>
         </>

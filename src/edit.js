@@ -13,7 +13,7 @@ import './styles/editor.scss';
 
 export default function Edit({ attributes, setAttributes }) {
     const [pressNotes, setPressNotes] = useState(attributes.pressNotes || []);
-    const [featuredIndex, setFeaturedIndex] = useState(null);
+    const [featuredIndex, setFeaturedIndex] = useState(attributes.featuredPressNote);
     const blockProps = useBlockProps();
 
     return (

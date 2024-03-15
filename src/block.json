@@ -17,6 +17,9 @@
 	"style": "file:./style-index.css",
 	"viewScript": "file:./view.js",
 	"attributes": {
+    "featuredPressNote" : {
+      "type": "number"
+    },
 		"pressNotes": {
 			"type": "array",
 			"default": [],

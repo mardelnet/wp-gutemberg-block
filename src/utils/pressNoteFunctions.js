@@ -52,12 +52,14 @@ export const removePressNote = (pressNotes, setPressNotes, setAttributes, index)
     setAttributes({ pressNotes: updatedPressNotes });
 };
 
-export const addFeaturedPressNote = (setFeaturedIndex, index) => {
+export const addFeaturedPressNote = (setFeaturedIndex, setAttributes, index) => {
   setFeaturedIndex(index);
+  setAttributes({ featuredPressNote: index });
 };
 
-export const removeFeaturedPressNote = (setFeaturedIndex) => {
+export const removeFeaturedPressNote = (setFeaturedIndex, setAttributes) => {
   setFeaturedIndex(null);
+  setAttributes({ featuredPressNote: null });
 };
 
 export const parseDateString = (dateString) => {
