@@ -1,1 +1,1 @@
-# wp-gutemberg-block
+# Press Notes - Gutenberg blocks for WordPress
